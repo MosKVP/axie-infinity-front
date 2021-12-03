@@ -1,0 +1,23 @@
+.token-prices {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &__token-detail {
+    display: flex;
+    align-items: center;
+    width: 15rem;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    margin: 0.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem 0 $lighter-grey;
+
+    &__image {
+      height: 4rem;
+      aspect-ratio: 1;
+      object-fit: scale-down;
+    }
+  }
+}
