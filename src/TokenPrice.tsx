@@ -13,7 +13,7 @@ export const TokenPriceContainer: React.FC<Props> = () => {
   const currencySymbol = "$";
   return (
     <div className='token-prices'>
-      <div className='token-prices__token-detail'>
+      <div className='card token-prices__token-detail'>
         <img
           src={ethIcon}
           alt='ethereum icon'
@@ -28,7 +28,7 @@ export const TokenPriceContainer: React.FC<Props> = () => {
           </div>
         </Stack>
       </div>
-      <div className='token-prices__token-detail'>
+      <div className='card token-prices__token-detail'>
         <img
           src={axsIcon}
           alt='axs icon'
@@ -43,7 +43,7 @@ export const TokenPriceContainer: React.FC<Props> = () => {
           </div>
         </Stack>
       </div>
-      <div className='token-prices__token-detail'>
+      <div className='card token-prices__token-detail'>
         <img
           src={slpIcon}
           alt='slp icon'

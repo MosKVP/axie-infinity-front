@@ -14,27 +14,27 @@ $code-font-stack: "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono",
 
 /// Copy text color
 /// @type Color
-$text-color: hsl(0, 0, 15) !default;
+$text-color: hsl(0, 0%, 15%) !default;
 
 /// Main brand color
 /// @type Color
-$brand-color: rgb(0, 99, 229) !default;
+$brand-color: hsl(205, 70%, 50%) !default;
 
 /// Lightest grey
 /// @type Color
-$lightest-grey: hsl(0, 0, 90) !default;
+$lightest-grey: hsl(0, 0%, 90%) !default;
 
 /// Lighter grey
 /// @type Color
-$lighter-grey: hsl(0, 0, 75) !default;
+$lighter-grey: hsl(0, 0%, 75%) !default;
 
 /// Medium grey
 /// @type Color
-$mid-grey: hsl(0, 0, 60) !default;
+$mid-grey: hsl(0, 0%, 60%) !default;
 
 /// Dark grey
 /// @type Color
-$dark-grey: hsl(0, 0, 30) !default;
+$dark-grey: hsl(0, 0%, 30%) !default;
 
 /// Container's maximum width
 /// @type Length
