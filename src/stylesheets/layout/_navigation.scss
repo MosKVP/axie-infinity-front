@@ -1,3 +1,5 @@
+@use "../abstracts" as *;
+
 .navigation {
   box-shadow: 0 1rem 2rem 0 rgba($color: $dark-grey, $alpha: 0.15);
 
