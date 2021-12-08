@@ -1,0 +1,25 @@
+.axie-parent-form {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  justify-items: center;
+  flex-wrap: wrap;
+  margin: 2rem auto;
+  gap: 2rem;
+}
+
+.table-row-inactive {
+  background-color: $lighter-grey;
+}
+
+.axie-detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &__image {
+    height: 4rem;
+    aspect-ratio: 1;
+    object-fit: scale-down;
+  }
+}

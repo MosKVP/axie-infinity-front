@@ -53,4 +53,14 @@ $breakpoints: (
 /// @type String
 /// @example scss - When using a CDN
 ///   $base-url: 'http://cdn.example.com/assets/';
+///
 $base-url: "/assets/" !default;
+
+$colors: (
+  aquatic: hsl(186, 100%, 40%),
+  beast: hsl(42, 100%, 54%),
+  bug: hsl(6, 100%, 63%),
+  bird: hsl(334, 100%, 77%),
+  plant: hsl(86, 100%, 38%),
+  reptile: hsl(295, 62%, 72%),
+)

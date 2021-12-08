@@ -1,4 +1,4 @@
-import { Button, TextField } from "@mui/material";
+import { Button, Stack, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { calculate } from "./api/breeding";
 import { CalculateRequest, CalculateResult } from "./api/breeding.d";
@@ -47,52 +47,56 @@ export const Form = ({
     setLoading(false);
   };
   return (
-    <div>
-      <div>
-        <img
-          src={getAxiePictureFromID(debouncedParentID1)}
-          alt='axie parent 1'
-          height='200px'
-        />
-        <img
-          src={getAxiePictureFromID(debouncedParentID2)}
-          alt='axie parent 2'
-          height='200px'
-        />
+    <form onSubmit={handleSubmit}>
+      <div className='axie-parent-form'>
+        <Stack>
+          <img
+            src={getAxiePictureFromID(debouncedParentID1)}
+            alt='axie parent 1'
+            height='200px'
+          />
+          <TextField
+            variant='outlined'
+            type='number'
+            label='Parent 1'
+            name='axieParentID1'
+            placeholder='Axie ID'
+            InputProps={{
+              inputProps: {
+                min: 1,
+              },
+            }}
+            value={calculateReq.axieParentID1}
+            onChange={handleChange}
+          />
+        </Stack>
+        <Stack>
+          <img
+            src={getAxiePictureFromID(debouncedParentID2)}
+            alt='axie parent 2'
+            height='200px'
+          />
+          <TextField
+            variant='outlined'
+            type='number'
+            label='Parent 2'
+            name='axieParentID2'
+            placeholder='Axie ID'
+            InputProps={{
+              inputProps: {
+                min: 1,
+              },
+            }}
+            value={calculateReq.axieParentID2}
+            onChange={handleChange}
+          />
+        </Stack>
       </div>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          variant='outlined'
-          type='number'
-          label='Parent 1'
-          name='axieParentID1'
-          placeholder='Axie ID'
-          InputProps={{
-            inputProps: {
-              min: 1,
-            },
-          }}
-          value={calculateReq.axieParentID1}
-          onChange={handleChange}
-        />
-        <TextField
-          variant='outlined'
-          type='number'
-          label='Parent 2'
-          name='axieParentID2'
-          placeholder='Axie ID'
-          InputProps={{
-            inputProps: {
-              min: 1,
-            },
-          }}
-          value={calculateReq.axieParentID2}
-          onChange={handleChange}
-        />
-        <Button variant='contained' type='submit'>
+      <div className='center'>
+        <Button variant='contained' type='submit' size='large'>
           Submit
         </Button>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };

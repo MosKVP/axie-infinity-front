@@ -3,6 +3,8 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  gap: 1rem;
+  margin: 2rem;
 
   &__token-detail {
     display: flex;
@@ -10,7 +12,6 @@
     width: 15rem;
     gap: 1rem;
     padding: 1.5rem 2rem;
-    margin: 0.5rem;
 
     &__image {
       height: 4rem;

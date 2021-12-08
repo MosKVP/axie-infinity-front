@@ -6,7 +6,7 @@ import { Tokens } from "../api/token.d";
 import { Detail } from "../Detail";
 import { Form } from "../Form";
 import { EditableNumberCell, Table } from "../Table";
-import { TokenPriceContainer } from "../TokenPrice";
+import { TokenPriceContainer } from "../components/TokenPrice";
 import { TokenPrice } from "../TokenPriceContext";
 import { genAxiePicture } from "../util";
 
@@ -56,7 +56,7 @@ function BreedingCalculator() {
         Header: "Axie",
         accessor: "axie",
         Cell: ({ value }) => (
-          <div className='axie-container'>
+          <div className='axie-detail'>
             <img
               alt=''
               src={genAxiePicture(
@@ -69,8 +69,8 @@ function BreedingCalculator() {
               width='200'
               height='150'
             ></img>
-            <div className='axie-parts-container'>
-              <div>{value.mouth.name}</div>
+            <div>
+              <div className={value.mouth.class}>{value.mouth.name}</div>
               <div>{value.horn.name}</div>
               <div>{value.back.name}</div>
               <div>{value.tail.name}</div>
@@ -106,7 +106,7 @@ function BreedingCalculator() {
   };
 
   return (
-    <div>
+    <div className='container'>
       <TokenPrice.Provider value={tokenPrice}>
         <TokenPriceContainer />
         <Form props={{ setCalculateResult, setLoading }} />
@@ -125,10 +125,10 @@ function BreedingCalculator() {
               })()}
               onUpdate={onUpdate}
               getRowProps={(row) => ({
-                style: {
-                  background:
-                    row.original.price === null ? "#00000030" : "white",
-                },
+                className:
+                  row.original.price === null
+                    ? "table-row-inactive"
+                    : undefined,
               })}
             />
             <Detail
