@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { calculate } from "./api/breeding";
 import { CalculateRequest, CalculateResult } from "./api/breeding.d";
 import { useDebounce } from "./hooks/useDebounce";
-import { getAxiePictureFromID } from "./util";
+import { getAxieMarketPlaceLink, getAxiePictureFromID } from "./util";
 
 interface Props {
   setCalculateResult: React.Dispatch<
@@ -50,11 +50,13 @@ export const Form = ({
     <form onSubmit={handleSubmit}>
       <div className='axie-parent-form'>
         <Stack>
-          <img
-            src={getAxiePictureFromID(debouncedParentID1)}
-            alt='axie parent 1'
-            height='200px'
-          />
+          <a href={getAxieMarketPlaceLink(debouncedParentID1)}>
+            <img
+              src={getAxiePictureFromID(debouncedParentID1)}
+              alt='axie parent 1'
+              height='200px'
+            />
+          </a>
           <TextField
             variant='outlined'
             type='number'
@@ -71,11 +73,13 @@ export const Form = ({
           />
         </Stack>
         <Stack>
-          <img
-            src={getAxiePictureFromID(debouncedParentID2)}
-            alt='axie parent 2'
-            height='200px'
-          />
+          <a href={getAxieMarketPlaceLink(debouncedParentID2)}>
+            <img
+              src={getAxiePictureFromID(debouncedParentID2)}
+              alt='axie parent 2'
+              height='200px'
+            />
+          </a>
           <TextField
             variant='outlined'
             type='number'

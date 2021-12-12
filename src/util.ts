@@ -79,3 +79,7 @@ export function displayUSD(usd: number): string {
     })
   );
 }
+
+export function getAxieMarketPlaceLink(id: string): string {
+  return id ? `https://marketplace.axieinfinity.com/axie/${id}/` : "#";
+}
