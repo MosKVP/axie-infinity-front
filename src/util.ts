@@ -52,10 +52,10 @@ export function getAxiePictureFromID(id: string): string {
     : blankAxie;
 }
 
-const slpPerBreed = [300, 450, 750, 1200, 1950, 3150, 5100];
+const slpPerBreed = [900, 1350, 2250, 3600, 5850, 9450, 15300];
 
 export function calculateTokenNeeded(breedCount1: number, breedCount2: number) {
-  return { slp: slpPerBreed[breedCount1] + slpPerBreed[breedCount2], axs: 1 };
+  return { slp: slpPerBreed[breedCount1] + slpPerBreed[breedCount2], axs: 0.5 };
 }
 
 export function subtractMarketFee(price: number): number {
