@@ -58,7 +58,8 @@
 
 .card {
   border-radius: 1rem;
-  box-shadow: 0 1rem 2rem 0 rgba($color: $dark-grey, $alpha: 0.15);
+  padding: 1rem;
+  box-shadow: 0 0.5rem 1rem 0 rgba($color: $dark-grey, $alpha: 0.12);
 }
 
 .center {

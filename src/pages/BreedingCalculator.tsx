@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Column } from "react-table";
-import { AxieChild, CalculateResult } from "../api/breeding.d";
+import { CalculateResult } from "../api/breeding.d";
 import { getPrice } from "../api/token";
 import { Tokens } from "../api/token.d";
 import { Detail } from "../Detail";
 import { Form } from "../Form";
-import { EditableNumberCell, Table } from "../Table";
 import { TokenPriceContainer } from "../components/TokenPrice";
 import { TokenPrice } from "../TokenPriceContext";
-import { genAxiePicture } from "../util";
-
-interface TableData {
-  chance: number;
-  price: number | null;
-  axie: AxieChild;
-}
+import { AxieChildDetail } from "../components/AxieChildDetail";
 
 function BreedingCalculator() {
   const [calculateResult, setCalculateResult] =
@@ -36,71 +28,21 @@ function BreedingCalculator() {
     getTokenPrices();
   }, []);
 
-  const columns: ReadonlyArray<Column<TableData>> = React.useMemo(
-    () => [
-      {
-        Header: "Chance",
-        accessor: "chance",
-        Cell: ({ value }) =>
-          value.toLocaleString(undefined, {
-            style: "percent",
-            minimumFractionDigits: 2,
-          }),
-      },
-      {
-        Header: "Price (ETH)",
-        accessor: "price",
-        Cell: EditableNumberCell,
-      },
-      {
-        Header: "Axie",
-        accessor: "axie",
-        Cell: ({ value }) => (
-          <div className='axie-detail'>
-            <img
-              alt=''
-              src={genAxiePicture(
-                value.class,
-                value.mouth.partID,
-                value.horn.partID,
-                value.back.partID,
-                value.tail.partID
-              )}
-              width='200'
-              height='150'
-            ></img>
-            <div>
-              <div className={value.mouth.class}>{value.mouth.name}</div>
-              <div>{value.horn.name}</div>
-              <div>{value.back.name}</div>
-              <div>{value.tail.name}</div>
-            </div>
-          </div>
-        ),
-      },
-    ],
-    []
-  );
-
-  // When our cell renderer calls onUpdate, we'll use
-  // the rowIndex, columnId and new value to update the
-  // original data
-  const onUpdate = (rowIndex: number, columnId: string, value: any) => {
-    setCalculateResult((old): CalculateResult | undefined => {
-      if (old === undefined) {
-        return undefined;
+  const onChange: (
+    rowIndex: number
+  ) => React.ChangeEventHandler<HTMLInputElement> = (rowIndex) => (e) => {
+    setCalculateResult((oldCalculateResult): CalculateResult | undefined => {
+      if (oldCalculateResult === undefined) {
+        return oldCalculateResult;
       }
       return {
-        ...old,
-        axieChildren: old.axieChildren.map((row, index) => {
-          if (index === rowIndex) {
-            return {
-              ...old?.axieChildren[rowIndex],
-              [columnId]: value,
-            };
-          }
-          return row;
-        }),
+        ...oldCalculateResult,
+        axieChildren: oldCalculateResult.axieChildren.map(
+          (oldAxieChild, index) =>
+            index === rowIndex
+              ? { ...oldAxieChild, price: e.target.valueAsNumber }
+              : oldAxieChild
+        ),
       };
     });
   };
@@ -112,25 +54,14 @@ function BreedingCalculator() {
         <Form props={{ setCalculateResult, setLoading }} />
         {!loading && calculateResult ? (
           <div>
-            <Table
-              columns={columns}
-              data={(function (): TableData[] {
-                return calculateResult.axieChildren.map((value): TableData => {
-                  return {
-                    chance: value.chance,
-                    price: value.price,
-                    axie: value,
-                  };
-                });
-              })()}
-              onUpdate={onUpdate}
-              getRowProps={(row) => ({
-                className:
-                  row.original.price === null
-                    ? "table-row-inactive"
-                    : undefined,
+            <div className='axie-children'>
+              {calculateResult.axieChildren.map((axieChild, index) => {
+                return (
+                  <AxieChildDetail props={{ axieChild, index, onChange }} />
+                );
               })}
-            />
+            </div>
+
             <Detail
               props={{
                 calculateResult: calculateResult,

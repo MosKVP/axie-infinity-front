@@ -7,21 +7,17 @@
   justify-items: center;
   flex-wrap: wrap;
   margin: 2rem auto;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .table-row-inactive {
-  background-color: $lighter-grey;
+  background-color: $lightest-grey;
 }
 
-.axie-detail {
+.axie-children {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  &__image {
-    height: 4rem;
-    aspect-ratio: 1;
-    object-fit: scale-down;
-  }
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
 }

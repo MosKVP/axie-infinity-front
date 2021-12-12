@@ -94,7 +94,7 @@ export const Form = ({
       </div>
       <div className='center'>
         <Button variant='contained' type='submit' size='large'>
-          Submit
+          Calculate
         </Button>
       </div>
     </form>

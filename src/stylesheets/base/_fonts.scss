@@ -1,3 +1,15 @@
 // -----------------------------------------------------------------------------
 // This file contains all @font-face declarations, if any.
 // -----------------------------------------------------------------------------
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url("../../assets/fonts/Roboto-Regular.ttf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: local("Roboto"), url("../../assets/fonts/Roboto-Bold.ttf");
+  font-weight: bold;
+}
