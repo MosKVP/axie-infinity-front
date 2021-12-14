@@ -1,19 +1,27 @@
 import { InputAdornment, TextField } from "@mui/material";
+import React, { useState } from "react";
 import { AxieChild } from "../api/breeding.d";
-import { genAxiePicture } from "../util";
+import { genAxiePicture, roundToPrecision } from "../util";
 import { PartIcon } from "./PartIcon";
 
 interface Props {
   axieChild: AxieChild;
   index: number;
-  onChange: any;
+  handleUpdate: (rowIndex: number) => React.FocusEventHandler<HTMLInputElement>;
 }
 
 export const AxieChildDetail = ({
-  props: { axieChild, index, onChange },
+  props: { axieChild, index, handleUpdate },
 }: {
   props: Props;
 }) => {
+  const [price, setPrice] = useState(
+    axieChild.price ? roundToPrecision(axieChild.price, 3) : null
+  );
+  const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    setPrice(e.target.valueAsNumber);
+  };
+
   return (
     <div className='card axie-child-detail'>
       <img
@@ -52,10 +60,9 @@ export const AxieChildDetail = ({
           }}
           size='small'
           placeholder='Enter Price'
-          value={axieChild.price?.toLocaleString(undefined, {
-            maximumFractionDigits: 3,
-          })}
-          onChange={onChange(index)}
+          value={price === null ? "" : price}
+          onBlur={handleUpdate(index)}
+          onChange={handleChange}
         />
       </div>
       <div className='axie-child-detail__heading'>Parts</div>

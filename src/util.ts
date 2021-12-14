@@ -83,3 +83,8 @@ export function displayUSD(usd: number): string {
 export function getAxieMarketPlaceLink(id: string): string {
   return id ? `https://marketplace.axieinfinity.com/axie/${id}/` : "#";
 }
+
+
+export function roundToPrecision(num: number, precision: number) {
+  return Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision);
+}

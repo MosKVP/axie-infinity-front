@@ -7,6 +7,7 @@ import { Form } from "../Form";
 import { TokenPriceContainer } from "../components/TokenPrice";
 import { TokenPrice } from "../TokenPriceContext";
 import { AxieChildDetail } from "../components/AxieChildDetail";
+import { nanoid } from "nanoid";
 
 function BreedingCalculator() {
   const [calculateResult, setCalculateResult] =
@@ -28,9 +29,9 @@ function BreedingCalculator() {
     getTokenPrices();
   }, []);
 
-  const onChange: (
+  const handleUpdate: (
     rowIndex: number
-  ) => React.ChangeEventHandler<HTMLInputElement> = (rowIndex) => (e) => {
+  ) => React.FocusEventHandler<HTMLInputElement> = (rowIndex) => (e) => {
     setCalculateResult((oldCalculateResult): CalculateResult | undefined => {
       if (oldCalculateResult === undefined) {
         return oldCalculateResult;
@@ -57,7 +58,10 @@ function BreedingCalculator() {
             <div className='axie-children'>
               {calculateResult.axieChildren.map((axieChild, index) => {
                 return (
-                  <AxieChildDetail props={{ axieChild, index, onChange }} />
+                  <AxieChildDetail
+                    key={nanoid()}
+                    props={{ axieChild, index, handleUpdate }}
+                  />
                 );
               })}
             </div>
