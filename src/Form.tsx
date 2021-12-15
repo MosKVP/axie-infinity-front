@@ -2,8 +2,10 @@ import { Button, Stack, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { calculate } from "./api/breeding";
 import { CalculateRequest, CalculateResult } from "./api/breeding.d";
+import { Image } from "./components/Image";
 import { useDebounce } from "./hooks/useDebounce";
 import { getAxieMarketPlaceLink, getAxiePictureFromID } from "./util";
+import blankAxie from "./assets/images/blank_axie.png";
 
 interface Props {
   setCalculateResult: React.Dispatch<
@@ -12,11 +14,7 @@ interface Props {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Form = ({
-  props: { setCalculateResult, setLoading },
-}: {
-  props: Props;
-}) => {
+export const Form: React.FC<Props> = ({ setCalculateResult, setLoading }) => {
   const [calculateReq, setCalculateReq] = useState<CalculateRequest>({
     axieParentID1: "",
     axieParentID2: "",
@@ -51,8 +49,9 @@ export const Form = ({
       <div className='axie-parent-form'>
         <Stack>
           <a href={getAxieMarketPlaceLink(debouncedParentID1)}>
-            <img
+            <Image
               src={getAxiePictureFromID(debouncedParentID1)}
+              fallbackSrc={blankAxie}
               alt='axie parent 1'
               height='200px'
             />
@@ -74,8 +73,9 @@ export const Form = ({
         </Stack>
         <Stack>
           <a href={getAxieMarketPlaceLink(debouncedParentID2)}>
-            <img
+            <Image
               src={getAxiePictureFromID(debouncedParentID2)}
+              fallbackSrc={blankAxie}
               alt='axie parent 2'
               height='200px'
             />

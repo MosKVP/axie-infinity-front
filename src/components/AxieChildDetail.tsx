@@ -10,10 +10,10 @@ interface Props {
   handleUpdate: (rowIndex: number) => React.FocusEventHandler<HTMLInputElement>;
 }
 
-export const AxieChildDetail = ({
-  props: { axieChild, index, handleUpdate },
-}: {
-  props: Props;
+export const AxieChildDetail: React.FC<Props> = ({
+  axieChild,
+  index,
+  handleUpdate,
 }) => {
   const [price, setPrice] = useState(
     axieChild.price ? roundToPrecision(axieChild.price, 3) : null

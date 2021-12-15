@@ -52,7 +52,7 @@ function BreedingCalculator() {
     <div className='container'>
       <TokenPrice.Provider value={tokenPrice}>
         <TokenPriceContainer />
-        <Form props={{ setCalculateResult, setLoading }} />
+        <Form setCalculateResult={setCalculateResult} setLoading={setLoading} />
         {!loading && calculateResult ? (
           <div>
             <div className='axie-children'>
@@ -60,7 +60,9 @@ function BreedingCalculator() {
                 return (
                   <AxieChildDetail
                     key={nanoid()}
-                    props={{ axieChild, index, handleUpdate }}
+                    axieChild={axieChild}
+                    index={index}
+                    handleUpdate={handleUpdate}
                   />
                 );
               })}
