@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { CalculateResult } from "../api/breeding.d";
-import { getPrice } from "../api/token";
-import { Tokens } from "../api/token.d";
-import { Detail } from "../Detail";
-import { Form } from "../Form";
-import { TokenPriceContainer } from "../components/TokenPrice";
-import { TokenPrice } from "../TokenPriceContext";
-import { AxieChildDetail } from "../components/AxieChildDetail";
+import { CalculateResult } from "../../api/breeding.d";
+import { getPrice } from "../../api/token";
+import { Tokens } from "../../api/token.d";
+import { Detail } from "./Detail";
+import { Form } from "../../Form";
+import { TokenPriceContainer } from "../../components/TokenPrice";
+import { TokenPrice } from "../../TokenPriceContext";
+import { AxieChildDetail } from "../../components/AxieChildDetail";
 import { nanoid } from "nanoid";
 
 function BreedingCalculator() {

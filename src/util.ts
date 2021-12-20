@@ -62,28 +62,9 @@ export function subtractMarketFee(price: number): number {
   return price * (1 - 0.0425);
 }
 
-export function displayETH(eth: number): string {
-  return (
-    "Ξ" +
-    eth.toLocaleString(undefined, {
-      maximumFractionDigits: 3,
-    })
-  );
-}
-
-export function displayUSD(usd: number): string {
-  return (
-    "$" +
-    usd.toLocaleString(undefined, {
-      maximumFractionDigits: 2,
-    })
-  );
-}
-
 export function getAxieMarketPlaceLink(id: string): string {
   return id ? `https://marketplace.axieinfinity.com/axie/${id}/` : "#";
 }
-
 
 export function roundToPrecision(num: number, precision: number) {
   return Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision);

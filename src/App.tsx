@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import BreedingCalculator from "./pages/BreedingCalculator";
 import NotFound from "./pages/NotFound";
 import NavBar from "./layout/NavBar";
+import BreedingCalculator from "./pages/breedingCalculator";
 
 function App() {
   return (

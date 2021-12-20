@@ -50,7 +50,7 @@ export const AxieChildDetail: React.FC<Props> = ({
           className='axie-child-detail__price'
           variant='outlined'
           type='number'
-          style={{ marginLeft: "1rem" }}
+          sx={{ marginLeft: "1rem" }}
           InputProps={{
             inputProps: {
               min: 0,
@@ -73,7 +73,9 @@ export const AxieChildDetail: React.FC<Props> = ({
             partName='mouth'
             className='axie-child-detail__part__icon'
           />
-          <span>{axieChild.mouth.name}</span>
+          <span className='axie-child-detail__part__name'>
+            {axieChild.mouth.name}
+          </span>
         </div>
         <div className='axie-child-detail__part'>
           <PartIcon
@@ -81,7 +83,9 @@ export const AxieChildDetail: React.FC<Props> = ({
             partName='horn'
             className='axie-child-detail__part__icon'
           />
-          <span>{axieChild.horn.name}</span>
+          <span className='axie-child-detail__part__name'>
+            {axieChild.horn.name}
+          </span>
         </div>
         <div className='axie-child-detail__part'>
           <PartIcon
@@ -89,7 +93,9 @@ export const AxieChildDetail: React.FC<Props> = ({
             partName='back'
             className='axie-child-detail__part__icon'
           />
-          <span>{axieChild.back.name}</span>
+          <span className='axie-child-detail__part__name'>
+            {axieChild.back.name}
+          </span>
         </div>
         <div className='axie-child-detail__part'>
           <PartIcon
@@ -97,7 +103,9 @@ export const AxieChildDetail: React.FC<Props> = ({
             partName='tail'
             className='axie-child-detail__part__icon'
           />
-          <span>{axieChild.tail.name}</span>
+          <span className='axie-child-detail__part__name'>
+            {axieChild.tail.name}
+          </span>
         </div>
       </div>
     </div>

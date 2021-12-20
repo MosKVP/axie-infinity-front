@@ -21,3 +21,70 @@
   flex-wrap: wrap;
   margin: 1.5rem 0;
 }
+
+.parent-detail {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+
+  &__heading {
+    color: $mid-grey;
+  }
+
+  &__field {
+    width: 12rem;
+  }
+}
+
+.summary {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.25rem 2rem;
+
+  &--loss {
+    @extend .summary-line;
+    margin: 0.25rem 0;
+    background-color: hsl(0, 100%, 80%);
+    box-shadow: 0 0.4rem 0.5rem hsla(0, 100%, 25%, 40%);
+  }
+
+  &--profit {
+    @extend .summary-line;
+    margin: 0.25rem 0;
+    background-color: hsl(104, 60%, 80%);
+    box-shadow: 0 0.4rem 0.5rem hsla(107, 100%, 25%, 40%);
+  }
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+
+  &__eth {
+    font-size: 1.4rem;
+    font-weight: 500;
+
+    &--big {
+      font-size: 1.9rem;
+      font-weight: bold;
+    }
+  }
+
+  &__usd {
+    font-size: 0.9rem;
+    min-width: 5rem;
+
+    &--big {
+      font-size: 1rem;
+      min-width: 5rem;
+    }
+  }
+}
