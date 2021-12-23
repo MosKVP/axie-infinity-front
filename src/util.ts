@@ -69,3 +69,21 @@ export function getAxieMarketPlaceLink(id: string): string {
 export function roundToPrecision(num: number, precision: number) {
   return Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision);
 }
+
+export function getSearchMarketPlaceLink(
+  className: string,
+  partIDs: string[],
+  minBreed: number,
+  maxBreed: number
+): string {
+  let url = new URLSearchParams();
+  url.append("auctionTypes", "Sale");
+  url.append("class", className);
+  partIDs.forEach((value) => {
+    url.append("part", value);
+  });
+  url.append("breedCount", minBreed.toString());
+  url.append("breedCount", maxBreed.toString());
+
+  return "https://marketplace.axieinfinity.com/axie/?" + url.toString();
+}

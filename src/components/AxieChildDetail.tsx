@@ -1,8 +1,13 @@
-import { InputAdornment, TextField } from "@mui/material";
+import { InputAdornment, TextField, Tooltip } from "@mui/material";
 import React, { useState } from "react";
 import { AxieChild } from "../api/breeding.d";
-import { genAxiePicture, roundToPrecision } from "../util";
+import {
+  genAxiePicture,
+  getSearchMarketPlaceLink,
+  roundToPrecision,
+} from "../util";
 import { PartIcon } from "./PartIcon";
+import { ReactComponent as OpenInNew } from "../assets/images/open-in-new.svg";
 
 interface Props {
   axieChild: AxieChild;
@@ -24,6 +29,27 @@ export const AxieChildDetail: React.FC<Props> = ({
 
   return (
     <div className='card axie-child-detail'>
+      <div className='axie-child-detail__link-wrapper'>
+        <a
+          href={getSearchMarketPlaceLink(
+            axieChild.class,
+            [
+              axieChild.mouth.partID,
+              axieChild.horn.partID,
+              axieChild.back.partID,
+              axieChild.tail.partID,
+            ],
+            0,
+            0
+          )}
+          target='_blank'
+          rel='noreferrer noopener'
+        >
+          <Tooltip title='Search in Marketplace'>
+            <OpenInNew className='axie-child-detail__link-icon' />
+          </Tooltip>
+        </a>
+      </div>
       <img
         alt=''
         src={genAxiePicture(
@@ -35,6 +61,7 @@ export const AxieChildDetail: React.FC<Props> = ({
         )}
         className='axie-child-detail__image'
       ></img>
+
       <div>
         <div className='axie-child-detail__heading'>Chance</div>
         <span className='axie-child-detail__chance'>
@@ -60,7 +87,7 @@ export const AxieChildDetail: React.FC<Props> = ({
           }}
           size='small'
           placeholder='Enter Price'
-          value={price === null ? "" : price}
+          value={price ? price : ""}
           onBlur={handleUpdate(index)}
           onChange={handleChange}
         />
