@@ -41,7 +41,12 @@ function BreedingCalculator() {
         axieChildren: oldCalculateResult.axieChildren.map(
           (oldAxieChild, index) =>
             index === rowIndex
-              ? { ...oldAxieChild, price: e.target.valueAsNumber }
+              ? {
+                  ...oldAxieChild,
+                  price: isNaN(e.target.valueAsNumber)
+                    ? null
+                    : e.target.valueAsNumber,
+                }
               : oldAxieChild
         ),
       };
@@ -68,11 +73,7 @@ function BreedingCalculator() {
               })}
             </div>
 
-            <Detail
-              props={{
-                calculateResult: calculateResult,
-              }}
-            />
+            <Detail calculateResult={calculateResult} />
           </div>
         ) : null}
       </TokenPrice.Provider>

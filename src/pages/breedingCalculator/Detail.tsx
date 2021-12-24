@@ -21,7 +21,7 @@ interface ParentDetail {
   parent2Sale: number;
 }
 
-export const Detail = ({ props: { calculateResult } }: { props: Props }) => {
+export const Detail: React.FC<Props> = ({ calculateResult }) => {
   const tokenPrice = useContext(TokenPrice);
   const [parentDetail, setParentDetail] = useState<ParentDetail>({
     parent1Cost: roundToPrecision(
@@ -72,12 +72,12 @@ export const Detail = ({ props: { calculateResult } }: { props: Props }) => {
     netExpectedPrice,
     netParent1Sale,
     netParent2Sale,
-    totalParentSale,
     totalChildrenSale,
     totalSale,
-    totalParentCost,
     totalCost,
+    avgCost,
     profit,
+    profitPercent,
   } = calculateBreedingCost(
     { calculateResult },
     { parentDetail },
@@ -220,51 +220,73 @@ export const Detail = ({ props: { calculateResult } }: { props: Props }) => {
         </div>
       </div>
       <br />
-      <div>Optimal Breed {optimalBreed}</div>
+      <div className='summary__lines'>
+        <div className='summary__key'>Optimal Number to Breed</div>
+        <div className='summary__main-value'>{optimalBreed}</div>
+        <div></div>
+        <div className='summary__key'>SLP Needed</div>
+        <div className='summary__main-value'>{slpNeeded}</div>
+        <div></div>
+        <div className='summary__key'>AXS Needed</div>
+        <div className='summary__main-value'>{axsNeeded}</div>
+        <div></div>
+        <div className='summary__key'>Expected sale per Axie</div>
+        <Price eth={netExpectedPrice} />
+        <div className='summary__key'>Average cost per Axie</div>
+        <Price eth={avgCost} />
+      </div>
+      <br />
       <div>
-        <h3>Sales</h3>
-        <div className='summary-line'>
-          <div>Parent 1 Sale</div>
+        <h3 className='summary__header'>Sales</h3>
+        <div className='summary__lines'>
+          <div className='summary__key'>Parent 1 Sale</div>
           <Price eth={netParent1Sale} />
-        </div>
-        <div className='summary-line'>
-          <div>Parent 2 Sale</div>
+
+          <div className='summary__key'>Parent 2 Sale</div>
           <Price eth={netParent2Sale} />
-        </div>
-        <div className='summary-line'>
-          <div>Children Sale</div>
+
+          <div className='summary__key'>Children Sale</div>
           <Price eth={totalChildrenSale} />
-        </div>
-        <div className='summary-line'>
-          <div>Total Sale</div>
+
+          <div className='summary__key--total'>Total Sale</div>
           <Price eth={totalSale} size='big' />
         </div>
         <br />
-        <h3>Cost</h3>
-        <div className='summary-line'>
-          <div>AXS Cost</div>
+        <h3 className='summary__header'>Cost</h3>
+        <div className='summary__lines'>
+          <div className='summary__key'>AXS Cost</div>
           <Price eth={axsCost} />
-        </div>
-        <div className='summary-line'>
-          <div>SLP Cost</div>
+
+          <div className='summary__key'>SLP Cost</div>
           <Price eth={slpCost} />
-        </div>
-        <div className='summary-line'>
-          <div>Parent 1 Cost</div>
+
+          <div className='summary__key'>Parent 1 Cost</div>
           <Price eth={parent1Cost} />
-        </div>
-        <div className='summary-line'>
-          <div>Parent 2 Cost</div>
+
+          <div className='summary__key'>Parent 2 Cost</div>
           <Price eth={parent2Cost} />
-        </div>
-        <div className='summary-line'>
-          <div>Total Cost</div>
+
+          <div className='summary__key--total'>Total Cost</div>
           <Price eth={totalCost} size='big' />
         </div>
         <br />
-        <div className={"card summary-line--" + (isLoss ? "loss" : "profit")}>
-          <h3>Estimated {isLoss ? "Loss" : "Profit"}</h3>
+        <div
+          className={
+            "card summary__bottom-line--" + (isLoss ? "loss" : "profit")
+          }
+        >
+          <h3 className='summary__bottom-line__key'>
+            Estimated {isLoss ? "Loss" : "Profit"}
+          </h3>
+
           <Price eth={profit} size='big' />
+          <div className='summary__bottom-line__percent-profit'>
+            {"% Profit " +
+              profitPercent.toLocaleString(undefined, {
+                style: "percent",
+                maximumFractionDigits: 2,
+              })}
+          </div>
         </div>
       </div>
     </div>
@@ -275,10 +297,8 @@ function calculateExpectedPrice(children: AxieChild[]): number {
   let totalChance = 0;
   let expectedPrice = 0;
   children.forEach(({ chance, price }) => {
-    if (price !== null) {
-      totalChance += chance;
-      expectedPrice += price * chance;
-    }
+    totalChance += chance;
+    expectedPrice += (price || 0) * chance;
   });
   return totalChance === 0 ? 0 : expectedPrice / totalChance;
 }
@@ -335,7 +355,9 @@ function calculateBreedingCost(
 
   const totalParentCost = parent1Cost + parent2Cost;
   const totalCost = totalParentCost + axsCost + slpCost;
+  const avgCost = optimalBreed ? totalCost / optimalBreed : 0;
   const profit = totalSale - totalCost;
+  const profitPercent = profit / totalCost;
   return {
     optimalBreed,
     axsNeeded,
@@ -350,6 +372,8 @@ function calculateBreedingCost(
     totalSale,
     totalParentCost,
     totalCost,
+    avgCost,
     profit,
+    profitPercent,
   };
 }

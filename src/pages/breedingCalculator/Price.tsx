@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { Fragment, useContext } from "react";
 import { TokenPrice } from "../../TokenPriceContext";
 
 interface Props {
@@ -14,15 +14,18 @@ export const Price: React.FC<Props> = ({ eth, size }) => {
 
   let displayUSD = "-";
   if (tokenPrice) {
-    displayUSD = (eth * tokenPrice.ethereum.usd).toFixed(2);
+    displayUSD = (eth * tokenPrice.ethereum.usd).toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
   }
 
   const mod = size === "big" ? "--big" : "";
 
   return (
-    <div className='price'>
-      <span className={"price__eth" + mod}>{"Ξ " + displayETH}</span>
-      <span className={"price__usd" + mod}>{"$" + displayUSD}</span>
-    </div>
+    <Fragment>
+      <span className={`summary__main-value${mod}`}>{`Ξ ${displayETH}`}</span>
+      <span className={`summary__side-value${mod}`}>{`$${displayUSD}`}</span>
+    </Fragment>
   );
 };

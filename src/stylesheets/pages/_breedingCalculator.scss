@@ -39,52 +39,77 @@
 .summary {
   max-width: 600px;
   margin: auto;
-  padding: 2rem;
-}
+  padding: 3rem;
 
-.summary-line {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0.25rem 2rem;
-
-  &--loss {
-    @extend .summary-line;
-    margin: 0.25rem 0;
-    background-color: hsl(0, 100%, 80%);
-    box-shadow: 0 0.4rem 0.5rem hsla(0, 100%, 25%, 40%);
+  &__header {
+    padding-left: 1rem;
   }
 
-  &--profit {
-    @extend .summary-line;
-    margin: 0.25rem 0;
-    background-color: hsl(104, 60%, 80%);
-    box-shadow: 0 0.4rem 0.5rem hsla(107, 100%, 25%, 40%);
+  &__lines {
+    display: grid;
+    grid-template-columns: auto max-content max-content;
+    grid-auto-flow: row;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0 2rem;
   }
-}
 
-.price {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
+  &__key {
+    font-size: 1rem;
+  }
 
-  &__eth {
-    font-size: 1.4rem;
+  &__key--total {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  &__main-value {
+    justify-self: end;
+    font-size: 1.3rem;
     font-weight: 500;
 
     &--big {
+      justify-self: end;
       font-size: 1.9rem;
       font-weight: bold;
     }
   }
 
-  &__usd {
-    font-size: 0.9rem;
-    min-width: 5rem;
+  &__side-value {
+    font-size: 0.8rem;
 
     &--big {
       font-size: 1rem;
-      min-width: 5rem;
+    }
+  }
+
+  &__bottom-line {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-columns: auto max-content max-content;
+    align-items: center;
+    column-gap: 0.3rem;
+
+    &--loss {
+      @extend .summary__bottom-line;
+      background-color: hsl(0, 100%, 80%);
+      box-shadow: 0 0.4rem 0.5rem hsla(0, 100%, 25%, 40%);
+    }
+
+    &--profit {
+      @extend .summary__bottom-line;
+      background-color: hsl(104, 60%, 80%);
+      box-shadow: 0 0.4rem 0.5rem hsla(107, 100%, 25%, 40%);
+    }
+
+    &__key {
+      grid-row-end: span 2;
+    }
+
+    &__percent-profit {
+      font-size: 0.8rem;
+      text-align: center;
+      grid-column-end: span 2;
     }
   }
 }

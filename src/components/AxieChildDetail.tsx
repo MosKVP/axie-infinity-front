@@ -21,7 +21,7 @@ export const AxieChildDetail: React.FC<Props> = ({
   handleUpdate,
 }) => {
   const [price, setPrice] = useState(
-    axieChild.price ? roundToPrecision(axieChild.price, 3) : null
+    axieChild.price ? roundToPrecision(axieChild.price, 3) : 0
   );
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setPrice(e.target.valueAsNumber);
@@ -87,7 +87,7 @@ export const AxieChildDetail: React.FC<Props> = ({
           }}
           size='small'
           placeholder='Enter Price'
-          value={price ? price : ""}
+          value={price}
           onBlur={handleUpdate(index)}
           onChange={handleChange}
         />
