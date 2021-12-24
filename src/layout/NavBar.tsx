@@ -1,11 +1,13 @@
 import { Stack } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <nav className='navigation'>
       <ul className='navigation__inner'>
-        <div>Logo</div>
+        <div>
+          <Link to='/'>Axie</Link>
+        </div>
         <Stack direction='row'>
           <li>
             <NavLink to='/' className='nav-link'>
