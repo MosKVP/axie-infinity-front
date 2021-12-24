@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { TokenPrice } from "../TokenPriceContext";
+import { TokenPrice } from "../context/TokenPrice";
 import { Stack } from "@mui/material";
 import ethIcon from "../assets/images/eth.png";
 import axsIcon from "../assets/images/axs.png";

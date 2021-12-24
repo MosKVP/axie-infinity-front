@@ -1,13 +1,13 @@
 import { InputAdornment, TextField, Tooltip } from "@mui/material";
 import React, { useState } from "react";
-import { AxieChild } from "../api/breeding.d";
+import { AxieChild } from "../../api/breeding.d";
 import {
   genAxiePicture,
   getSearchMarketPlaceLink,
   roundToPrecision,
-} from "../util";
-import { PartIcon } from "./PartIcon";
-import { ReactComponent as OpenInNew } from "../assets/images/open-in-new.svg";
+} from "../../util";
+import { PartIcon } from "../../components/PartIcon";
+import { ReactComponent as OpenInNew } from "../../assets/images/open-in-new.svg";
 
 interface Props {
   axieChild: AxieChild;

@@ -1,5 +1,5 @@
 import { Fragment, useContext } from "react";
-import { TokenPrice } from "../../TokenPriceContext";
+import { TokenPrice } from "../../context/TokenPrice";
 
 interface Props {
   eth: number;

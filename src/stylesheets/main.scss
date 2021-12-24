@@ -10,7 +10,6 @@
 @use "base/helpers";
 
 // 3. Layout-related sections
-@use "layout/header";
 @use "layout/footer";
 @use "layout/navigation";
 
@@ -18,7 +17,6 @@
 @use "components/mui";
 @use "components/button";
 @use "components/tokenPrice";
-@use "components/axieChildDetail";
 
 // 5. Page-specific styles
 @use "pages/home";

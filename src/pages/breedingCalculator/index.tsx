@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { CalculateResult } from "../../api/breeding.d";
 import { getPrice } from "../../api/token";
 import { Tokens } from "../../api/token.d";
-import { Detail } from "./Detail";
-import { Form } from "../../Form";
+import { Summary } from "./Summary";
+import { Form } from "./Form";
 import { TokenPriceContainer } from "../../components/TokenPrice";
-import { TokenPrice } from "../../TokenPriceContext";
-import { AxieChildDetail } from "../../components/AxieChildDetail";
+import { TokenPrice } from "../../context/TokenPrice";
+import { AxieChildDetail } from "./AxieChildDetail";
 import { nanoid } from "nanoid";
+import { CircularProgress } from "@mui/material";
 
 function BreedingCalculator() {
   const [calculateResult, setCalculateResult] =
@@ -58,7 +59,9 @@ function BreedingCalculator() {
       <TokenPrice.Provider value={tokenPrice}>
         <TokenPriceContainer />
         <Form setCalculateResult={setCalculateResult} setLoading={setLoading} />
-        {!loading && calculateResult ? (
+        {loading ? (
+          <CircularProgress sx={{ display: "block", margin: "2rem auto" }} />
+        ) : calculateResult ? (
           <div>
             <div className='axie-children'>
               {calculateResult.axieChildren.map((axieChild, index) => {
@@ -73,7 +76,7 @@ function BreedingCalculator() {
               })}
             </div>
 
-            <Detail calculateResult={calculateResult} />
+            <Summary calculateResult={calculateResult} />
           </div>
         ) : null}
       </TokenPrice.Provider>

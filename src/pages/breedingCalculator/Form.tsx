@@ -1,11 +1,11 @@
 import { Button, Stack, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { calculate } from "./api/breeding";
-import { CalculateRequest, CalculateResult } from "./api/breeding.d";
-import { Image } from "./components/Image";
-import { useDebounce } from "./hooks/useDebounce";
-import { getAxieMarketPlaceLink, getAxiePictureFromID } from "./util";
-import blankAxie from "./assets/images/blank_axie.png";
+import { calculate } from "../../api/breeding";
+import { CalculateRequest, CalculateResult } from "../../api/breeding.d";
+import { Image } from "../../components/Image";
+import { useDebounce } from "../../hooks/useDebounce";
+import { getAxieMarketPlaceLink, getAxiePictureFromID } from "../../util";
+import blankAxie from "../../assets/images/blank_axie.png";
 
 interface Props {
   setCalculateResult: React.Dispatch<

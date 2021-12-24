@@ -1,7 +1,7 @@
 import { InputAdornment, TextField } from "@mui/material";
 import { useContext, useState } from "react";
 import { AxieChild, CalculateResult } from "../../api/breeding.d";
-import { TokenPrice } from "../../TokenPriceContext";
+import { TokenPrice } from "../../context/TokenPrice";
 import {
   calculateTokenNeeded,
   subtractMarketFee,
@@ -21,7 +21,7 @@ interface ParentDetail {
   parent2Sale: number;
 }
 
-export const Detail: React.FC<Props> = ({ calculateResult }) => {
+export const Summary: React.FC<Props> = ({ calculateResult }) => {
   const tokenPrice = useContext(TokenPrice);
   const [parentDetail, setParentDetail] = useState<ParentDetail>({
     parent1Cost: roundToPrecision(
