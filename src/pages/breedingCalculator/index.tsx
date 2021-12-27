@@ -9,6 +9,16 @@ import { TokenPrice } from "../../context/TokenPrice";
 import { AxieChildDetail } from "./AxieChildDetail";
 import { nanoid } from "nanoid";
 import { CircularProgress } from "@mui/material";
+import { AxieParentDetail } from "./AxieParentDetail";
+import { roundToPrecision } from "../../util";
+
+export interface ParentDetail {
+  [index: string]: number;
+  parent1Cost: number;
+  parent1Sale: number;
+  parent2Cost: number;
+  parent2Sale: number;
+}
 
 function BreedingCalculator() {
   const [calculateResult, setCalculateResult] =
@@ -17,6 +27,33 @@ function BreedingCalculator() {
   const [tokenPrice, setTokenPrice] = useState<Tokens | undefined>();
 
   const [loading, setLoading] = useState<boolean>(false);
+
+  const [parentDetail, setParentDetail] = useState<ParentDetail>({
+    parent1Cost: 0,
+    parent1Sale: 0,
+    parent2Cost: 0,
+    parent2Sale: 0,
+  });
+  useEffect(() => {
+    setParentDetail({
+      parent1Cost: roundToPrecision(
+        calculateResult?.axieParent1.currentPrice || 0,
+        3
+      ),
+      parent1Sale: roundToPrecision(
+        calculateResult?.axieParent1.salePrice || 0,
+        3
+      ),
+      parent2Cost: roundToPrecision(
+        calculateResult?.axieParent2.currentPrice || 0,
+        3
+      ),
+      parent2Sale: roundToPrecision(
+        calculateResult?.axieParent2.salePrice || 0,
+        3
+      ),
+    });
+  }, [calculateResult?.axieParent1, calculateResult?.axieParent2]);
 
   async function getTokenPrices() {
     try {
@@ -45,7 +82,7 @@ function BreedingCalculator() {
               ? {
                   ...oldAxieChild,
                   price: isNaN(e.target.valueAsNumber)
-                    ? null
+                    ? 0
                     : e.target.valueAsNumber,
                 }
               : oldAxieChild
@@ -63,6 +100,12 @@ function BreedingCalculator() {
           <CircularProgress sx={{ display: "block", margin: "2rem auto" }} />
         ) : calculateResult ? (
           <div>
+            <br />
+            <AxieParentDetail
+              calculateResult={calculateResult}
+              parentDetail={parentDetail}
+              setParentDetail={setParentDetail}
+            />
             <div className='axie-children'>
               {calculateResult.axieChildren.map((axieChild, index) => {
                 return (
@@ -76,7 +119,10 @@ function BreedingCalculator() {
               })}
             </div>
 
-            <Summary calculateResult={calculateResult} />
+            <Summary
+              calculateResult={calculateResult}
+              parentDetail={parentDetail}
+            />
           </div>
         ) : null}
       </TokenPrice.Provider>
