@@ -43,6 +43,7 @@ export const Summary: React.FC<Props> = ({ calculateResult, parentDetail }) => {
 
   return (
     <div className='card summary'>
+      <h3 className='summary__header'>Summary</h3>
       <div className='summary__lines'>
         <div className='summary__key'>Optimal Number to Breed</div>
         <div className='summary__main-value'>{optimalBreed}</div>
@@ -60,7 +61,11 @@ export const Summary: React.FC<Props> = ({ calculateResult, parentDetail }) => {
       </div>
       <br />
       <div>
-        <h3 className='summary__header'>Sales</h3>
+        <div className='summary__header-wrapper'>
+          <h3 className='summary__header'>Sales</h3>
+          <span className='helper-text'>Net of 4.25% fee</span>
+        </div>
+
         <div className='summary__lines'>
           <div className='summary__key'>Parent 1 Sale</div>
           <Price eth={netParent1Sale} />

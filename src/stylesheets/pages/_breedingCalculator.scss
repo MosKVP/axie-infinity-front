@@ -111,6 +111,12 @@
   margin: auto;
   padding: 3rem;
 
+  &__header-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+  }
+
   &__header {
     padding-left: 1rem;
   }
@@ -183,4 +189,3 @@
     }
   }
 }
-
