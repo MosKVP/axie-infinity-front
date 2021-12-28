@@ -92,7 +92,7 @@ function BreedingCalculator() {
   };
 
   return (
-    <div className='container'>
+    <div>
       <TokenPrice.Provider value={tokenPrice}>
         <TokenPriceContainer />
         <Form setCalculateResult={setCalculateResult} setLoading={setLoading} />

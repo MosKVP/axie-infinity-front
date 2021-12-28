@@ -1,3 +1,15 @@
-// -----------------------------------------------------------------------------
-// This file contains all styles related to the footer of the site/application.
-// -----------------------------------------------------------------------------
+@use "../abstracts" as *;
+
+footer {
+  margin-top: auto;
+  padding: 8rem 0;
+  background-color: $brand-color;
+
+  color: white;
+}
+
+.footer {
+  &__content {
+    text-align: center;
+  }
+}

@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 
-const NavBar = () => {
+const NavBar: React.FC = () => {
   return (
     <nav className='navigation'>
       <ul className='navigation__inner'>
