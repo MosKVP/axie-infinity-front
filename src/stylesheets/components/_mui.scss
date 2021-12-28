@@ -1,5 +1,6 @@
 @use "../abstracts" as *;
 
-.MuiOutlinedInput-root {
+.MuiOutlinedInput-root,
+.MuiButtonBase-root {
   font-family: $text-font-stack !important;
 }
