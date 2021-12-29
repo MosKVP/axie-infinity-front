@@ -12,14 +12,14 @@ const Footer: React.FC = () => {
           <StyledButton
             endIcon={<ContentCopy />}
             onClick={() => {
-              copyToClipboard("ronin:1417b707230c4F2a53819719dDe74FD62F9d6F6F");
+              copyToClipboard("ronin:28043f39a73a412e1d15f669f16a8a9fea180cf8");
               setCopyTooltip("Copied!");
             }}
             onMouseEnter={() => {
               setCopyTooltip("Copy to clipboard");
             }}
           >
-            ronin:1417b...F9d6F6F
+            ronin:28043...a180cf8
           </StyledButton>
         </Tooltip>
       </div>
