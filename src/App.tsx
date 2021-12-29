@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import NavBar from "./layout/NavBar";
 import BreedingCalculator from "./pages/breedingCalculator";
@@ -11,7 +10,7 @@ function App() {
       <NavBar />
       <div className='container'>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<BreedingCalculator />} />
           <Route path='/breeding-calculator' element={<BreedingCalculator />} />
           <Route path='*' element={<NotFound />} />
         </Routes>

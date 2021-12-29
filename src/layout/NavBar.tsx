@@ -12,11 +12,11 @@ const NavBar: React.FC = () => {
           </Link>
         </div>
         <Stack direction='row'>
-          <li>
+          {/* <li>
             <NavLink to='/' className='nav-link'>
               Home
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink to='/breeding-calculator' className='nav-link'>
               Breeding Calculator
