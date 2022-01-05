@@ -50,10 +50,10 @@ export const Form: React.FC<Props> = ({ setCalculateResult, setLoading }) => {
         <Stack>
           <a href={getAxieMarketPlaceLink(debouncedParentID1)}>
             <Image
+              className='axie-parent-form__image'
               src={getAxiePictureFromID(debouncedParentID1)}
               fallbackSrc={blankAxie}
               alt='axie parent 1'
-              height='200px'
             />
           </a>
           <TextField
@@ -74,10 +74,10 @@ export const Form: React.FC<Props> = ({ setCalculateResult, setLoading }) => {
         <Stack>
           <a href={getAxieMarketPlaceLink(debouncedParentID2)}>
             <Image
+              className='axie-parent-form__image'
               src={getAxiePictureFromID(debouncedParentID2)}
               fallbackSrc={blankAxie}
               alt='axie parent 2'
-              height='200px'
             />
           </a>
           <TextField
