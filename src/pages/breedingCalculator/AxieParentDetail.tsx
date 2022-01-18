@@ -44,12 +44,10 @@ export const AxieParentDetail: React.FC<Props> = ({
         <h3 className='parent-detail__heading'>Parent 1</h3>
         <div>
           <TextField
+            disabled
             className='parent-detail__field'
             variant='outlined'
             type='number'
-            InputProps={{
-              readOnly: true,
-            }}
             margin='dense'
             label='BreedCount'
             name='breedCount'
@@ -108,12 +106,10 @@ export const AxieParentDetail: React.FC<Props> = ({
         <h3 className='parent-detail__heading'>Parent 2</h3>
         <div>
           <TextField
+            disabled
             className='parent-detail__field'
             variant='outlined'
             type='number'
-            InputProps={{
-              readOnly: true,
-            }}
             margin='dense'
             label='BreedCount'
             name='breedCount'
